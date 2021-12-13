@@ -126,7 +126,7 @@ class Admin {
 	 * 
 	 * @since    1.0.0
 	 */
-	public function print_plugin_admin_notices() {
+	public function print_client_plugin_admin_notices() {
 		  if ( isset( $_REQUEST['pma_notice'] ) ) {
 				$html =	"<div class='notice notice-".$_REQUEST['pma_notice']." is-dismissible'><p><strong>{$_REQUEST['pma_response']}</strong></p></div>";
 				echo $html;

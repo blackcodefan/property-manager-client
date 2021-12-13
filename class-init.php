@@ -90,6 +90,8 @@ class Init {
         $this->loader->add_action('admin_init', $plugin_admin, 'register_settings');
 
         $this->loader->add_action( 'admin_post_save_setting_hook', $plugin_admin, 'save_setting');
+
+        $this->loader->add_action( 'admin_notices', $plugin_admin, 'print_client_plugin_admin_notices');
     }
 
     private function define_client_hooks(){

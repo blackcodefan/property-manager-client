@@ -1,6 +1,6 @@
 <div class="pmc-container alignfull">
     <?php foreach ($buildings as $building){ ?>
-        <h4 class="no-margin">
+        <h4 class="address">
             <?php echo $building[0]->building_name;?>
         </h4>
         <div class="wp-block-columns">

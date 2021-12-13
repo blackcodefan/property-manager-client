@@ -5,7 +5,7 @@ class ClientApi
 {
     public function verify_credential($username, $password){
 
-        $res = wp_remote_post('http://localhost/coupon/wp-json/pma/v1/verify-credential',
+        $res = wp_remote_post('https://whicksvideo.wpengine.com/wp-json/pma/v1/verify-credential',
             array(
                 "headers"=> array(
                     'Content-Type' => 'application/json; charset=utf-8',
@@ -19,7 +19,7 @@ class ClientApi
     }
 
     public function fetch_videos($username, $password){
-        $res = wp_remote_post('http://localhost/coupon/wp-json/pma/v1/fetch-videos',
+        $res = wp_remote_post('https://whicksvideo.wpengine.com/wp-json/pma/v1/fetch-videos',
             array(
                 "headers"=> array(
                     'Content-Type' => 'application/json; charset=utf-8',

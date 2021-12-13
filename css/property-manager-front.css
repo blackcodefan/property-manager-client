@@ -12,8 +12,8 @@
     .pmc-container{width: calc(100% - 40px); margin: 20px;}
 }
 
-.no-margin{
-    margin: 0!important;
+.address{
+    margin: 15px 0;
 }
 
 .video-column {
