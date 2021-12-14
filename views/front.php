@@ -12,23 +12,23 @@
                         <iframe src="<?php echo $video->youtube; ?>"></iframe>
                         <p class="description">
                             <?php if ($video->bedroom == 0) {
-                                echo 'Studio , ';
+                                echo 'Studio, ';
                             } else {
                                 echo $video->bedroom . ' Bedroom , ';
                             }
                             echo $video->bathroom . ' Bathroom</br>';
-                            if (!empty($video->unitf)) {
-                                echo $video->unitf . '</br>';
-                            }
+
                             if (!empty($video->apartrange)) {
 
-                                echo $type = 'F-Line Fl ';
+                                echo $type = $video->unitf . '-Line Fl ';
 
                                 echo $video->apartmin . '-' . $video->apartmax . '</br>';
+                            }else if (!empty($video->unitf)) {
+                                echo $video->unitf . '</br>';
                             }
 
-                            echo $video->address;
-                            echo '</br>' . $video->building_name;
+                            echo $video->address.'<br/>';
+                            echo $video->description;
                             ?>
                         </p>
                     <?php }?>
@@ -46,7 +46,7 @@
 
                         <p class="description">
                             <?php if ($video->bedroom == 0) {
-                                echo 'Studio , ';
+                                echo 'Studio, ';
                             } else {
                                 echo $video->bedroom . ' Bedroom , ';
                             }
@@ -62,8 +62,8 @@
                                     echo $video->unitf . '</br>';
                                 }
                             }
-                            echo $video->address;
-                            echo '</br>' . $video->building_name;
+                            echo $video->address.'<br/>';
+                            echo $video->description;
                             ?>
                         </p>
 
