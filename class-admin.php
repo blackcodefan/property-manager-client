@@ -112,8 +112,8 @@ class Admin {
 	 */
 	public function custom_redirect( $admin_notice, $response, $redirect_url ) {
 		wp_redirect( esc_url_raw( add_query_arg( array(
-									'pma_notice' => $admin_notice,
-									'pma_response' => $response,
+									'pmc_notice' => $admin_notice,
+									'pmc_response' => $response,
 									),
 							admin_url('admin.php?page='. $redirect_url )
 					) ) );
@@ -127,8 +127,8 @@ class Admin {
 	 * @since    1.0.0
 	 */
 	public function print_client_plugin_admin_notices() {
-		  if ( isset( $_REQUEST['pma_notice'] ) ) {
-				$html =	"<div class='notice notice-".$_REQUEST['pma_notice']." is-dismissible'><p><strong>{$_REQUEST['pma_response']}</strong></p></div>";
+		  if ( isset( $_REQUEST['pmc_notice'] ) ) {
+				$html =	"<div class='notice notice-".$_REQUEST['pmc_notice']." is-dismissible'><p><strong>{$_REQUEST['pmc_response']}</strong></p></div>";
 				echo $html;
 		  }
 		  else {

@@ -19,7 +19,9 @@ class ClientApi
     }
 
     public function fetch_videos($username, $password){
-        $res = wp_remote_post('https://whicksvideo.wpengine.com/wp-json/pma/v1/fetch-videos',
+        $url = 'https://whicksvideo.wpengine.com/wp-json/pma/v1/fetch-videos';
+//        $local_url = 'http://localhost/coupon/wp-json/pma/v1/fetch-videos';
+        $res = wp_remote_post($url,
             array(
                 "headers"=> array(
                     'Content-Type' => 'application/json; charset=utf-8',

@@ -24,12 +24,14 @@ class Front
 
     public function enqueue_styles() {
 
+        wp_enqueue_style( 'bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', array(), $this->version, 'all' );
         wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/property-manager-front.css', array(), $this->version, 'all' );
 
     }
 
     public function enqueue_scripts() {
-
+        wp_enqueue_script( 'popover', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_script( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array( 'jquery' ), $this->version, false );
         wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/property-manager-front.js', array( 'jquery' ), $this->version, false );
 
     }
@@ -38,7 +40,7 @@ class Front
         add_shortcode( 'pmc-listing', array($this, 'list_tour_videos'));
     }
 
-    public function list_tour_videos(){
+    public function list_tour_videos($attrs){
         $u = get_option('pmc_u');
         $p = get_option('pmc_p');
         $response = $this->api->fetch_videos($u, $p);
@@ -47,8 +49,14 @@ class Front
             $videos = json_decode($response['body'])->videos;
             $buildings = $this->group_by('building_id', $videos);
 
+            if (isset($attrs['template']) && $attrs['template'] == 'accordion'){
+                $template = 'views/front-accordion.php';
+            }else {
+                $template = 'views/front-tile.php';
+            }
+
             ob_start();
-            include('views/front.php');
+            include($template);
             $content = ob_get_contents();
             ob_end_clean();
 
@@ -62,16 +70,27 @@ class Front
     }
 
     private function group_by($key, $data) {
-        $result = array();
+        $results = array();
 
         foreach($data as $val) {
             if(array_key_exists($key, $val)){
-                $result[$val->$key][] = $val;
+                $results[$val->$key][] = $val;
             }else{
-                $result[""][] = $val;
+                $results[""][] = $val;
             }
         }
 
-        return $result;
+        $sort_results = [];
+
+        foreach ($results as $key => $result){
+            usort($result, function($a, $b){
+                return $a->listing_order ?
+                    $a->apartrange < $b->apartrange
+                    : $a->apartrange > $b->apartrange;
+            });
+            $sort_results[$key] = $result;
+        }
+
+        return $sort_results;
     }
 }
