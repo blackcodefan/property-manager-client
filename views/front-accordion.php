@@ -1,6 +1,6 @@
 <div id="accordion" class="pmc-container alignfull">
     <?php foreach ($buildings as $building){ ?>
-        <h1>
+        <h1 class="building-name">
             <?php echo $building[0]->building_name;?>
         </h1>
         <?php foreach ($building as $video){?>
