@@ -43,7 +43,9 @@ class Front
     public function list_tour_videos($attrs){
         $u = get_option('pmc_u');
         $p = get_option('pmc_p');
-        $response = $this->api->fetch_videos($u, $p);
+        $url = get_option('pmc_url');
+
+        $response = $this->api->fetch_videos($url, $u, $p);
         if (gettype($response) == 'array'){
 
             $videos = json_decode($response['body'])->videos;
@@ -65,7 +67,6 @@ class Front
         }else{
             return '<h2>Your credential is invalid.</h2>';
         }
-
 
     }
 

@@ -6,6 +6,12 @@
         <div id="universal-message-container">
             <div class="options">
                 <p>
+                    <label>Url: </label>
+                    <input type="url" name="pmc_url" value="<?php echo $url; ?>" required autocomplete="off"/>
+                </p>
+            </div>
+            <div class="options">
+                <p>
                     <label>Username: </label>
                     <input type="text" name="pmc_u" value="<?php echo $username; ?>" required autocomplete="off"/>
                 </p>

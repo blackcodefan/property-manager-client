@@ -73,6 +73,7 @@ class Admin {
 	public function setting_page_content() {
 	    $username = get_option('pmc_u');
 	    $password = get_option('pmc_p');
+	    $url = get_option('pmc_url');
 		include_once( 'views/setting.php' );
 	}
 
@@ -82,18 +83,33 @@ class Admin {
 
             $u = sanitize_text_field($_POST['pmc_u']);
             $p = sanitize_text_field($_POST['pmc_p']);
-            $response = $this->api->verify_credential($u, $p);
+            $raw_url = sanitize_text_field($_POST['pmc_url']);
 
-            if (gettype($response) == 'object'){
-                $admin_notice = 'error';
-                $message = 'Credential is not correct';
+            if (filter_var($raw_url, FILTER_VALIDATE_URL)){
+                $url_particles = parse_url($raw_url);
+                $url = $url_particles['scheme'].'://'.$url_particles['host'];
+                $response = $this->api->verify_credential($url, $u, $p);
+
+                if (gettype($response) == 'object'){
+                    $admin_notice = 'error';
+                    $message = 'Credential or URL is not correct';
+                }else{
+                    if ($response['response']['code'] == 200){
+                        update_option('pmc_u', $u);
+                        update_option('pmc_p', $p);
+                        update_option('pmc_url', $url);
+                        $admin_notice = 'success';
+                        $message = 'Credential has been saved successfully.';
+                    }
+                    else {
+                        $admin_notice = 'error';
+                        $message = 'Credential or URL is not correct';
+                    }
+                }
             }else{
-                update_option('pmc_u', $u);
-                update_option('pmc_p', $p);
-                $admin_notice = 'success';
-                $message = 'Credential has been saved successfully.';
+                $admin_notice = 'error';
+                $message = 'Url is not valid.  Valid format: https://example.com';
             }
-
             $this->custom_redirect($admin_notice, $message, $this->plugin_text_domain);
             exit;
         }else{
