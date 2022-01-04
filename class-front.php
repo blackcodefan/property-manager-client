@@ -44,6 +44,8 @@ class Front
         $u = get_option('pmc_u');
         $p = get_option('pmc_p');
         $url = get_option('pmc_url');
+        if(empty($url))
+            $url = 'https://whicksvideo.wpengine.com';
 
         $response = $this->api->fetch_videos($url, $u, $p);
         if (gettype($response) == 'array'){
