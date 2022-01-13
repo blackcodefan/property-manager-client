@@ -1,12 +1,12 @@
-<div id="accordion" class="pmc-container alignfull">
-    <?php foreach ($buildings as $building){ ?>
-        <h1 class="building-name">
-            <?php echo $building[0]->building_name;?>
-        </h1>
-        <?php foreach ($building as $video){?>
-            <div class="card accordion-item">
-                <div class="card-header">
-                    <a class="card-link collapse-handle" data-toggle="collapse" href="#<?php echo "accordion-".$video->id; ?>">
+<div class="pmc-container alignfull">
+    <div class="pmc-accordion">
+        <?php foreach ($buildings as $building){ ?>
+            <h1 class="building-name">
+                <?php echo $building[0]->building_name;?>
+            </h1>
+            <?php foreach ($building as $video){?>
+                <div class="pmc-accordion-item">
+                    <button class="pmc-accordion-handle">
                         <?php
                         if ($video->apartrange) {
                             if(!empty($video->unitf)) echo $video->unitf;
@@ -22,10 +22,8 @@
                         if (!empty($video->label))
                             echo ' ('.$video->label. ')';
                         ?>
-                    </a>
-                </div>
-                <div id="<?php echo "accordion-".$video->id; ?>" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
+                    </button>
+                    <div class="pmc-accordion-panel">
                         <?php
 
                         if(!empty($video->youtube)){
@@ -79,7 +77,7 @@
                         ?>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         <?php } ?>
-    <?php } ?>
+    </div>
 </div>
