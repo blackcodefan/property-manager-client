@@ -9,8 +9,8 @@
                     <button class="pmc-accordion-handle">
                         <?php
                         if ($video->apartrange) {
-                            if(!empty($video->unitf)) echo $video->unitf;
-                            if(!empty($video->unitfn)) echo $video->unitfn;
+                            if(!empty($video->unit)) echo $video->unit;
+                            else if(!empty($video->unitn)) echo $video->unitn;
                             echo '-Line Fl ';
                             echo $video->apartmin . '-' . $video->apartmax;
                         }else {
@@ -30,8 +30,8 @@
                             echo '<a class="accordion-item" target="_blank" href="'.$video->youtube.'">';
 
                             if ($video->apartrange) {
-                                if(!empty($video->unitf)) echo $video->unitf;
-                                if(!empty($video->unitfn)) echo $video->unitfn;
+                                if(!empty($video->unit)) echo $video->unit;
+                                if(!empty($video->unitn)) echo $video->unitn;
                                 echo '-Line Fl ';
                                 echo $video->apartmin . '-' . $video->apartmax;
                             }else {
@@ -52,7 +52,9 @@
                             echo '<a class="accordion-item" target="_blank" href="'.$video->vimeo.'">';
 
                             if ($video->apartrange) {
-                                echo $type = $video->unitf . '-Line Fl ';
+                                if(!empty($video->unit)) echo $video->unit;
+                                if(!empty($video->unitn)) echo $video->unitn;
+                                echo '-Line Fl ';
                                 echo $video->apartmin . '-' . $video->apartmax;
                             }else {
                                 if(!empty($video->unitf)) echo $video->unitf;

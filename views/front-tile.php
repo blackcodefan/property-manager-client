@@ -20,8 +20,8 @@
 
                                 if ($video->apartrange) {
 
-                                    if (!empty($video->unitf)) echo $video->unitf;
-                                    if (!empty($video->unitfn)) echo $video->unitfn;
+                                    if (!empty($video->unit)) echo $video->unit;
+                                    if (!empty($video->unitn)) echo $video->unitn;
                                     echo '-Line Fl ';
 
                                     echo $video->apartmin . '-' . $video->apartmax . '</br>';
@@ -60,8 +60,8 @@
                                 echo $video->bathroom . ' Bathroom</br>';
 
                                 if (!empty($video->apartrange)) {
-                                    if (!empty($video->unitf)) echo $video->unitf;
-                                    if (!empty($video->unitfn)) echo $video->unitfn;
+                                    if (!empty($video->unit)) echo $video->unit;
+                                    if (!empty($video->unitn)) echo $video->unitn;
                                     echo '-Line Fl ';
 
                                     echo $video->apartmin . '-' . $video->apartmax . '</br>';
