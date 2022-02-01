@@ -25,6 +25,9 @@
                                     echo '-Line Fl ';
 
                                     echo $video->apartmin . '-' . $video->apartmax . '</br>';
+                                    if (!empty($video->apartmin2)){
+                                        echo ' & ' . $video->apartmin2 . '-' . $video->apartmax2;
+                                    }
                                 } else {
                                     if (!empty($video->unitf)) echo $video->unitf;
                                     if (!empty($video->unitfn)) echo $video->unitfn;
@@ -65,6 +68,9 @@
                                     echo '-Line Fl ';
 
                                     echo $video->apartmin . '-' . $video->apartmax . '</br>';
+                                    if (!empty($video->apartmin2)){
+                                        echo ' & ' . $video->apartmin2 . '-' . $video->apartmax2;
+                                    }
                                 } else {
                                     if (!empty($video->unitf)) echo $video->unitf;
                                     if (!empty($video->unitfn)) echo $video->unitfn;

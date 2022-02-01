@@ -71,25 +71,33 @@ class Front
     }
 
     private function group_by($key, $data) {
-        $results = array();
+        $buildings = array();
 
         foreach($data as $val) {
-            if(array_key_exists($key, $val)){
-                $results[$val->$key][] = $val;
+            if(isset($key, $val)){
+                $buildings[$val->$key][] = $val;
             }else{
-                $results[""][] = $val;
+                $buildings[""][] = $val;
             }
         }
 
         $sort_results = [];
 
-        foreach ($results as $key => $result){
-            usort($result, function($a, $b){
-                return $a->listing_order ?
-                    $a->apartrange < $b->apartrange
-                    : $a->apartrange > $b->apartrange;
-            });
-            $sort_results[$key] = $result;
+
+        foreach ($buildings as $key=>$building){
+            $unique = [];
+            $line = [];
+            foreach ($building as $video){
+                if ($video->apartrange == "1") {
+                    array_push($line, $video);
+                }else {
+                    array_push($unique, $video);
+                }
+            }
+            if ($building[0]->listing_order)
+                $sort_results[$key] = array_merge($line, $unique);
+            else
+                $sort_results[$key] = array_merge($unique, $line);
         }
 
         return $sort_results;
