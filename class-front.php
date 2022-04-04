@@ -45,11 +45,19 @@ class Front
         if(empty($url))
             $url = 'https://whicksvideo.wpengine.com';
 
+        if (isset($_GET['building_id'])){
+            $building = $_GET['building_id'];
+        }else {
+            $building = null;
+        }
+
         $response = $this->api->fetch_videos($url, $u, $p);
         if (gettype($response) == 'array'){
 
             $videos = json_decode($response['body'])->videos;
-            $buildings = $this->group_by('building_id', $videos);
+            $grouped_videos = $this->group_by('building_id', $videos, $building);
+            $buildings = $grouped_videos[0];
+            $building_labels = $grouped_videos[1];
 
             if (isset($attrs['template']) && $attrs['template'] == 'accordion'){
                 $template = 'views/front-accordion.php';
@@ -70,12 +78,18 @@ class Front
 
     }
 
-    private function group_by($key, $data) {
+    private function group_by($key, $data, $selected_building = null) {
         $buildings = array();
+        $building_labels = [];
 
         foreach($data as $val) {
             if(isset($key, $val)){
-                $buildings[$val->$key][] = $val;
+                if (empty($selected_building)){
+                    $buildings[$val->$key][] = $val;
+                }else if ($val->$key == $selected_building){
+                    $buildings[$val->$key][] = $val;
+                }
+                $building_labels[$val->$key] = $val->building_name;
             }else{
                 $buildings[""][] = $val;
             }
@@ -100,6 +114,6 @@ class Front
                 $sort_results[$key] = array_merge($unique, $line);
         }
 
-        return $sort_results;
+        return [$sort_results, $building_labels];
     }
 }

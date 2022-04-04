@@ -19,8 +19,8 @@ class ClientApi
     }
 
     public function fetch_videos($url, $username, $password){
-        $url = $url.'/wp-json/pma/v1/fetch-videos';
-        $local_url = 'http://localhost/coupon/wp-json/pma/v1/fetch-videos';
+        $url = $url."/wp-json/pma/v1/fetch-videos";
+//        $local_url = "http://localhost/wordpress/wp-json/pma/v1/fetch-videos";
         $res = wp_remote_post($url,
             array(
                 "headers"=> array(
@@ -30,7 +30,6 @@ class ClientApi
                 'method'    => 'POST',
                 'timeout' => 75
             ));
-
         return $res;
     }
 }

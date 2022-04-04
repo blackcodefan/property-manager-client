@@ -123,7 +123,23 @@
     height: 281px;
     max-width: 100%;
 }
-
+.building-button{
+    padding: 5px 10px;
+    background-color: #2271B1;
+    border: 1px solid #2271B1;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 2px;
+    white-space: nowrap;
+    line-height: 31px;
+}
+.building-button:hover{
+    background-color: #135e96;
+    border: 1px solid #135e96;
+}
 @media (max-width: 500px) {
     .collapse-video{
         width: 300px!important;
