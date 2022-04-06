@@ -125,7 +125,7 @@
 }
 
 @media (max-width: 768px) {
-    .pagination{
+    .paginator{
         display: grid;
         grid-template-columns: auto auto;
     }
@@ -133,9 +133,9 @@
 .building-button{
     cursor: pointer;
     font-size: 15px;
-    margin: 2px;
+    margin: 5px;
     white-space: nowrap;
-    padding: 0 5px;
+    padding: 5px;
 }
 @media (max-width: 500px) {
     .collapse-video{

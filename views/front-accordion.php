@@ -1,5 +1,5 @@
 <div class="pmc-container alignfull">
-    <div class="pagination">
+    <div class="paginator">
         <a class="building-button" href="<?php echo get_permalink();?>">
             All
         </a>
@@ -102,7 +102,7 @@
             <?php } ?>
         <?php } ?>
     </div>
-    <div class="pagination">
+    <div class="paginator">
         <a class="building-button" href="<?php echo get_permalink();?>">
             All
         </a>
