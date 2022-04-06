@@ -1,12 +1,14 @@
 <div class="pmc-container alignfull">
-    <a class="building-button" href="<?php echo get_permalink();?>">
-        All
-    </a>
-    <?php foreach ($building_labels as $key => $value){?>
-        <a class="building-button" href="<?php echo get_permalink()."?building_id={$key}";?>">
-            <?php echo $value;?>
+    <div class="pagination">
+        <a class="building-button" href="<?php echo get_permalink();?>">
+            All
         </a>
-    <?php } ?>
+        <?php foreach ($building_labels as $key => $value){?>
+            <a class="building-button" href="<?php echo get_permalink()."?building_id={$key}";?>">
+                <?php echo $value;?>
+            </a>
+        <?php } ?>
+    </div>
 
     <div class="pmc-accordion">
         <?php foreach ($buildings as $building){ ?>
@@ -100,13 +102,14 @@
             <?php } ?>
         <?php } ?>
     </div>
-
-    <a class="building-button" href="<?php echo get_permalink();?>">
-        All
-    </a>
-    <?php foreach ($building_labels as $key => $value){?>
-        <a class="building-button" href="<?php echo get_permalink()."?building_id={$key}";?>">
-            <?php echo $value;?>
+    <div class="pagination">
+        <a class="building-button" href="<?php echo get_permalink();?>">
+            All
         </a>
-    <?php } ?>
+        <?php foreach ($building_labels as $key => $value){?>
+            <a class="building-button" href="<?php echo get_permalink()."?building_id={$key}";?>">
+                <?php echo $value;?>
+            </a>
+        <?php } ?>
+    </div>
 </div>
