@@ -1,15 +1,11 @@
 <div class="pmc-container alignfull">
     <div class="paginator">
-        <a class="building-button" href="<?php echo get_permalink();?>">
-            All
-        </a>
         <?php foreach ($building_labels as $key => $value){?>
             <a class="building-button" href="<?php echo get_permalink()."?building_id={$key}";?>">
                 <?php echo $value;?>
             </a>
         <?php } ?>
     </div>
-
     <div class="pmc-accordion">
         <?php foreach ($buildings as $building){ ?>
             <h1 class="building-name">
@@ -103,9 +99,6 @@
         <?php } ?>
     </div>
     <div class="paginator">
-        <a class="building-button" href="<?php echo get_permalink();?>">
-            All
-        </a>
         <?php foreach ($building_labels as $key => $value){?>
             <a class="building-button" href="<?php echo get_permalink()."?building_id={$key}";?>">
                 <?php echo $value;?>

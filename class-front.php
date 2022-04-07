@@ -79,7 +79,7 @@ class Front
     }
 
     private function group_by($key, $data, $selected_building = null) {
-        $buildings = array();
+        $buildings = [];
         $building_labels = [];
 
         foreach($data as $val) {
@@ -114,6 +114,8 @@ class Front
                 $sort_results[$key] = array_merge($unique, $line);
         }
 
-        return [$sort_results, $building_labels];
+        $first_key = array_key_first($sort_results);
+
+        return [[$sort_results[$first_key]], $building_labels];
     }
 }
