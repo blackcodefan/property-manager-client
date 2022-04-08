@@ -1,11 +1,13 @@
 <div class="pmc-container alignfull">
-    <div class="paginator">
+    <select class="building-select" style='width: 350px;'>
         <?php foreach ($building_labels as $key => $value){?>
-            <a class="building-button" href="<?php echo get_permalink()."?building_id={$key}";?>">
+            <option
+                <?php if ($_GET['building_id'] == $key) echo 'selected';?>
+                    value="<?php echo get_permalink()."?building_id={$key}";?>">
                 <?php echo $value;?>
-            </a>
+            </option>
         <?php } ?>
-    </div>
+    </select>
 
     <?php foreach ($buildings as $building) { ?>
         <h1 class="building-name">
@@ -107,12 +109,4 @@
             <?php } ?>
         </div>
     <?php } ?>
-
-    <div class="paginator">
-        <?php foreach ($building_labels as $key => $value){?>
-            <a class="building-button" href="<?php echo get_permalink()."?building_id={$key}";?>">
-                <?php echo $value;?>
-            </a>
-        <?php } ?>
-    </div>
 </div>

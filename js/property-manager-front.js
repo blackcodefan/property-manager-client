@@ -15,4 +15,7 @@ jQuery(function () {
         }
 
     });
+    jQuery(".building-select").select2().on('change', function (e) {
+        window.location.href = e.currentTarget.value;
+    });
 });
